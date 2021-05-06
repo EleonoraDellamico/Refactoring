@@ -9,6 +9,7 @@ document.querySelector('.score').textContent = 20;
 document.querySelector('.guess').value = 34;
 console.log(document.querySelector('.guess').value); */
 const secretNumber = Math.trunc(Math.random() * 20) + 1;
+let score = 20;
 document.querySelector('.number').textContent = secretNumber;
 //add an addEventListener
 document.querySelector('.check').addEventListener('click', function() {
@@ -22,10 +23,19 @@ document.querySelector('.check').addEventListener('click', function() {
 		document.querySelector('.message').textContent = '🎉 You rock!🎉';
 	} else if (guess > secretNumber) {
 		document.querySelector('.message').textContent = '📈 Too heigh ... try again';
+		score--;
+		document.querySelector('.score').textContent = score;
 	} else if (guess < secretNumber) {
 		document.querySelector('.message').textContent = '📉 Too low ... try again';
+		score--;
+		document.querySelector('.score').textContent = score;
 	}
 });
-//LOGIC
+//LOGIC SECRET NUMBER
 //First step to define the secret secretNumber outside the function see the line 11 and 12
 //Implement the second if line 21
+
+//LOGIC DECREASE SCORE
+//First step: to creat a variable score
+// put score-- to decrease
+//to pint we have to added document.querySelector('.score').textContent = score see line 26
