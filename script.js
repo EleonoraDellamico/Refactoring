@@ -11,6 +11,9 @@ console.log(document.querySelector('.guess').value); */
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
 let highscore = 0;
+const displayMessage = function(message) {
+	document.querySelector('.message').textContent = message;
+};
 
 //add an addEventListener
 document.querySelector('.check').addEventListener('click', function() {
@@ -19,10 +22,12 @@ document.querySelector('.check').addEventListener('click', function() {
 	console.log(guess, typeof guess); //IT's s tring for this reason we need to changed it put Number after queryselector.
 	// WHEN PLAYERS DON'T INSERT THE NUMBER
 	if (!guess) {
-		document.querySelector('.message').textContent = '⛔ Not a number ... insert a number';
+		displayMessage('⛔ Not a number ... insert a number');
+		//document.querySelector('.message').textContent = '⛔ Not a number ... insert a number';
 		//WHEN PALYERS WIN
 	} else if (guess === secretNumber) {
-		document.querySelector('.message').textContent = '🎉 You rock!🎉';
+		displayMessage('🎉 You rock!🎉');
+		//document.querySelector('.message').textContent = '🎉 You rock!🎉';
 		document.querySelector('.number').textContent = secretNumber;
 		document.querySelector('body').style.backgroundColor = '#60b347';
 		document.querySelector('.number').style.width = '30rem';
@@ -33,7 +38,8 @@ document.querySelector('.check').addEventListener('click', function() {
 		// WHEN THE NUMBER IS TOO HIGH
 	} else if (guess > secretNumber) {
 		if (score > 1) {
-			document.querySelector('.message').textContent = '📈 Too heigh ... try again';
+			displayMessage('📈 Too heigh ... try again');
+			//document.querySelector('.message').textContent = '📈 Too heigh ... try again';
 			score--;
 			document.querySelector('.score').textContent = score;
 		} else {
@@ -43,7 +49,8 @@ document.querySelector('.check').addEventListener('click', function() {
 		//WHEN TE NUMBER IS TOO LOW
 	} else if (guess < secretNumber) {
 		if (score > 1) {
-			document.querySelector('.message').textContent = '📉 Too low ... try again';
+			displayMessage('📉 Too low ... try again');
+			//document.querySelector('.message').textContent = '📉 Too low ... try again';
 			score--;
 			document.querySelector('.score').textContent = score;
 		} else {
@@ -67,7 +74,8 @@ document.querySelector('.check').addEventListener('click', function() {
 document.querySelector('.again').addEventListener('click', function() {
 	score = 20;
 	secretNumber = Math.trunc(Math.random() * 20) + 1;
-	document.querySelector('.message').textContent = 'Start guessing...';
+	displayMessage('Start guessing...');
+	//document.querySelector('.message').textContent = 'Start guessing...';
 	document.querySelector('.score').textContent = score;
 	document.querySelector('.guess').value = '';
 	document.querySelector('.number').textContent = '?';
@@ -78,3 +86,20 @@ document.querySelector('.again').addEventListener('click', function() {
 //IMPLEMENT THE HIGH SCORE
 //store hiscore in a variable
 //set in page 29
+
+//AVOIDING DUPLICATE CODE
+//WHEN THE NUMEBR IS WRONG
+/* else if (guess !== secretNumber){
+	if (score > 1) {
+			document.querySelector('.message').textContent = guess > secretNumber ?'📈 Too heigh ... try again' : 
+			score--;
+			document.querySelector('.score').textContent = score;
+		} else {
+			document.querySelector('.message').textContent = '💣 You lost the game';
+			document.querySelector('.score').textContent = 0;
+		}
+
+} */
+/* const displayMessage = function(message) {
+	document.querySelector('.message').textContent = message;
+}; */
